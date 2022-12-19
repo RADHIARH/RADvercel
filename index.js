@@ -12,6 +12,9 @@ app.get("/", (req, res) => {
 app.listen(5000, () => {
   console.log("Running on port 5000.");
 });
+// import cors
+var cors = require("cors");
+app.use(cors());
 // import database
 let dbConn = require("./db");
 // Export the Express API
