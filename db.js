@@ -5,5 +5,6 @@ var dbConn = mysql.createConnection({
   password: "reactjs!nodejs$ingenieurinformatique",
   database: "mydatabase",
   multipleStatements: true,
+  port: "3306",
 });
 module.exports = dbConn;
