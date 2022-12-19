@@ -8,26 +8,30 @@ app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
 
-
 // import cors
 var cors = require("cors");
 app.use(cors());
 require("dotenv").config();
 // import database
-let dbConn = require("./db");
-const port = process.env.PORT || 3000;
+var mysql = require("mysql2");
+var dbConn = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "reactjs!nodejs$ingenieurinformatique",
+  database: "mydatabase",
+  multipleStatements: true,
+  port: "3306",
+});
+const port = process.env.PORT || 3001;
 app.listen(port, function () {
   console.log("Node app is running on port " + port);
 });
 // Export the Express API
 //Creating GET Router to fetch all the employes  from the MySQL Database
 app.get("/employes", (req, res) => {
-  dbConn.query(
-    'SELECT * FROM user_table where id_role=(select id from role where role="employeur") and deleted=false',
-    (err, rows, fields) => {
-      if (!err) res.send(rows);
-      else console.log(err);
-    }
-  );
+  dbConn.query("SELECT * FROM user_table", (err, rows, fields) => {
+    if (!err) res.send(rows);
+    else console.log(err);
+  });
 });
 module.exports = app;
