@@ -2,7 +2,6 @@
 const express = require("express");
 // Initialize Express
 const app = express();
-const path = require("path");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,6 +24,9 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
+// import database
+var mysql = require("mysql2");
+let dbConn = require("./db");
 // Export the Express API
 //Creating GET Router to fetch all the employes  from the MySQL Database
 app.get("/employes", (req, res) => {
