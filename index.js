@@ -8,15 +8,17 @@ app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
 
-// Initialize server
-app.listen(5000, () => {
-  console.log("Running on port 5000.");
-});
+
 // import cors
 var cors = require("cors");
 app.use(cors());
+require("dotenv").config();
 // import database
 let dbConn = require("./db");
+const port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log("Node app is running on port " + port);
+});
 // Export the Express API
 //Creating GET Router to fetch all the employes  from the MySQL Database
 app.get("/employes", (req, res) => {
