@@ -21,6 +21,7 @@ const pool = mysql.createPool({
   database: "mydatabase",
   // multipleStatements: true,
   port: "3306",
+  waitForConnections: true,
 });
 const port = process.env.PORT || 3001;
 app.listen(port, function () {
