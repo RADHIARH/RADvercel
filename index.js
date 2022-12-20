@@ -15,11 +15,11 @@ require("dotenv").config();
 // import database
 var mysql = require("mysql2");
 var dbConn = mysql.createPool({
-  host: "localhost",
+  host: "127.0.0.1",
   user: "root",
   password: "reactjs!nodejs$ingenieurinformatique",
   database: "mydatabase",
-  multipleStatements: true,
+  // multipleStatements: true,
   port: "3306",
 });
 const port = process.env.PORT || 3001;
