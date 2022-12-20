@@ -14,7 +14,7 @@ app.use(cors());
 require("dotenv").config();
 // import database
 var mysql = require("mysql2");
-var dbConn = mysql.createPool({
+const pool = mysql.createPool({
   host: "127.0.0.1",
   user: "root",
   password: "reactjs!nodejs$ingenieurinformatique",
@@ -29,7 +29,7 @@ app.listen(port, function () {
 // Export the Express API
 //Creating GET Router to fetch all the employes  from the MySQL Database
 app.get("/employes", (req, res) => {
-  dbConn.query("SELECT * FROM user_table", (err, rows, fields) => {
+  pool.query("SELECT * FROM user_table", (err, rows, fields) => {
     if (!err) res.send(rows);
     else console.log(err);
   });
